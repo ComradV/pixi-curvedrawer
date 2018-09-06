@@ -1,0 +1,32 @@
+{
+  "name": "pixi-curvedrawer",
+  "version": "1.0.0",
+  "description": "Drawing Bezier curves for 2,3,4 points",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -p",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ComradV/pixi-curvedrawer.git"
+  },
+  "keywords": [
+    "bezier",
+    "curve",
+    "pixi"
+  ],
+  "author": "Gleb Vasiliev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ComradV/pixi-curvedrawer/issues"
+  },
+  "homepage": "https://github.com/ComradV/pixi-curvedrawer#readme",
+  "devDependencies": {
+    "jshint": "^2.9.6",
+    "jshint-loader": "^0.8.4",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0"
+  }
+}
