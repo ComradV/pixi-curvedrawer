@@ -11,10 +11,7 @@ module.exports = {
     rules: [{
       enforce: 'pre',
       test: /\.js$/, // запустим загрузчик во всех файлах .js
-      exclude: /node_modules/, // проигнорируем все файлы в папке  node_modules 
-      // include: [
-        // path.resolve(__dirname, 'src')
-      // ],
+      exclude: [/node_modules/, /pixi.min.js/], // проигнорируем все файлы в папке  node_modules 
       use: [{ loader: 'jshint-loader'}]
     }]
   }

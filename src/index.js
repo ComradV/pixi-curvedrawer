@@ -1,6 +1,6 @@
 //  import './pixi/pixi.min.js'
 // www
-  const PIXI = require('./pixi/pixi.min.js');
+  const PIXI = require('../pixi/pixi.min.js');
   
   let renderer = new PIXI.autoDetectRenderer(500,500,{backgroundColor:0xdadada});
   let stage = new PIXI.Container();
