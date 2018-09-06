@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Bezier curve drawer</title>
+</head>
+  <script src="pixi/pixi.min.js"></script>
+<body>
+  <script type="text/javascript">
+
+  var renderer = new PIXI.autoDetectRenderer(500,500,{backgroundColor:0xdadada});
+  var stage = new PIXI.Container();
+
+  document.body.appendChild(renderer.view);
+
+  stage.hitArea = new PIXI.Rectangle(0, 0, 500, 500);
+  stage.interactive = true;
+  stage.buttonMode = true;
+  stage.on("mousedown", mouseClickHandler);
+
+
+
+  let line = new PIXI.Graphics();
+  line.lineStyle(4, 0xFFFFFF, 1);
+  line.moveTo(1, 1);
+  line.bezierCurveTo(400,400,400,400,5,400);
+  animate();
+  let points = [];
+
+  function mouseClickHandler(e){
+      addPointToCurve(e.data.global);
+  }
+
+  function addPointToCurve(point){
+    stage.children = [];
+    if(points.length ==4){
+      points = [];
+      return;
+    }
+    points.push({x:point.x, y:point.y});
+    connectBez(points);
+  }
+
+  function connectBez(points){
+    if (points.length > 1){
+      let pointsForCurve = points.slice(1);
+      while (pointsForCurve.length < 3){
+        pointsForCurve.push(pointsForCurve[pointsForCurve.length-1]);
+      }
+      let curve = new PIXI.Graphics();
+      curve.lineStyle(2, 0xFFFFFF, 1);
+      curve.moveTo(points[0].x,points[0].y)
+      curve.bezierCurveTo(pointsForCurve[0].x,pointsForCurve[0].y,pointsForCurve[1].x,pointsForCurve[1].y,pointsForCurve[2].x,pointsForCurve[2].y);
+      stage.addChild(curve);
+    }
+    points.forEach(point => {
+      let circle = new PIXI.Graphics();
+      circle.lineStyle(2, 0xFFFFFF, 1);
+      circle.drawCircle(point.x, point.y, 6);
+      stage.addChild(circle);
+    })
+    
+  }
+
+  function animate() {
+      // render the stage
+      renderer.render(stage);
+      requestAnimationFrame(animate);
+  }
+
+  </script>
+</body>
+</html>
